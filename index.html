@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lino Salon — Troy, MI</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8963E;
+    --gold-light: #D4AF6A;
+    --gold-pale: #F5EDD8;
+    --dark: #0E0C0A;
+    --dark2: #1A1612;
+    --dark3: #242018;
+    --cream: #FAF6EF;
+    --text: #1A1612;
+    --muted: #7A6E60;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(14,12,10,0.95);
+    backdrop-filter: blur(10px);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(184,150,62,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-book {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 20px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+
+  .nav-book:hover {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 30%, rgba(184,150,62,0.08) 0%, transparent 70%);
+  }
+
+  .hero-content { position: relative; max-width: 700px; }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: rgba(250,246,239,0.5);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 14px 36px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(250,246,239,0.3);
+    color: rgba(250,246,239,0.7);
+    padding: 14px 36px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .divider-line { flex: 1; height: 1px; background: var(--gold-pale); }
+  .divider-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .about-text h2 em { font-style: italic; color: var(--gold); }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .stat {
+    background: var(--dark);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,246,239,0.5);
+  }
+
+  /* SERVICES */
+  .services {
+    background: var(--dark);
+    padding: 100px 40px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(184,150,62,0.15);
+  }
+
+  .service-item {
+    background: var(--dark2);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+
+  .service-item:hover { background: var(--dark3); }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .service-price {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: rgba(250,246,239,0.4);
+    line-height: 1.6;
+  }
+
+  /* HOURS */
+  .hours {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .hours-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .hours-title em { font-style: italic; color: var(--gold); }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gold-pale);
+    font-size: 14px;
+  }
+
+  .hours-day { color: var(--muted); letter-spacing: 0.05em; }
+  .hours-time { color: var(--text); font-weight: 400; }
+  .hours-closed { color: rgba(184,150,62,0.4); }
+
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .contact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value:hover { color: var(--gold); }
+
+  /* CHAT SECTION */
+  .chat-section {
+    background: var(--dark);
+    padding: 100px 40px;
+    text-align: center;
+  }
+
+  .chat-container {
+    max-width: 500px;
+    margin: 48px auto 0;
+    background: var(--dark2);
+    border: 1px solid rgba(184,150,62,0.2);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(184,150,62,0.15);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: rgba(250,246,239,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in:nth-child(4) { animation-delay: 0.6s; }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+    .hours { grid-template-columns: 1fr; gap: 40px; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">LINO SALON</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#chat">AI Assistant</a></li>
+  </ul>
+  <a href="https://linosalon.net" target="_blank" class="nav-book">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow fade-in">Troy, Michigan • Est. Family Salon</p>
+    <h1 class="hero-title fade-in">Where Style<br>Meets <em>Soul</em></h1>
+    <p class="hero-subtitle fade-in">Hair, Color & Beauty • 3636 Rochester Rd</p>
+    <div class="hero-cta fade-in">
+      <a href="tel:2488176884" class="btn-primary">Call to Book</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-text">
+    <h2>A Salon That<br>Feels Like <em>Home</em></h2>
+    <p>Lino Salon is a family-owned hair and beauty salon in the heart of Troy, Michigan. We believe every client deserves personalised attention and results they'll love.</p>
+    <p>From precision cuts to stunning colour transformations, our talented team is dedicated to making you look and feel your absolute best.</p>
+    <br>
+    <a href="tel:2488176884" class="btn-primary">Call (248) 817-6884</a>
+  </div>
+  <div class="about-stats">
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">AI Assistant</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Services</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Days Open</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">★★★★★</div>
+      <div class="stat-label">Rated</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Our <em>Services</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-name">Haircut & Blowdry</div>
+      <div class="service-price">Starting at $45</div>
+      <div class="service-desc">Precision cuts tailored to your face shape and style goals</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Hair Color</div>
+      <div class="service-price">Starting at $85</div>
+      <div class="service-desc">Full color services to refresh or completely transform your look</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Balayage</div>
+      <div class="service-price">Starting at $150</div>
+      <div class="service-desc">Hand-painted highlights for a natural sun-kissed finish</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Highlights</div>
+      <div class="service-price">Starting at $170</div>
+      <div class="service-desc">Classic and foil highlights for dimension and brightness</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Extensions</div>
+      <div class="service-price">Starting at $250</div>
+      <div class="service-desc">Full install and move-up services for length and volume</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Updo & Styling</div>
+      <div class="service-price">Starting at $95</div>
+      <div class="service-desc">Special occasion updos and styling for any event</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Braids</div>
+      <div class="service-price">Starting at $35</div>
+      <div class="service-desc">Expert braiding services for all hair types</div>
+    </div>
+    <div class="service-item">
+      <div class="service-name">Brows & Makeup</div>
+      <div class="service-price">Starting at $30</div>
+      <div class="service-desc">Brow shaping and professional makeup application</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & CONTACT -->
+<section class="hours" id="hours">
+  <div>
+    <h2 class="hours-title">Hours &<br><em>Location</em></h2>
+    <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">11:00 AM – 6:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">9:00 AM – 6:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
+    <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-closed">Closed</span></div>
+  </div>
+  <div class="contact-info" id="contact">
+    <div class="contact-item">
+      <span class="contact-label">Phone</span>
+      <a href="tel:2488176884" class="contact-value">(248) 817-6884</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Address</span>
+      <span class="contact-value">3636 Rochester Rd<br>Troy, MI 48084</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Instagram</span>
+      <a href="https://instagram.com/linosalon" target="_blank" class="contact-value">@linosalon</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Booking</span>
+      <a href="https://linosalon.net" target="_blank" class="contact-value">linosalon.net</a>
+    </div>
+    <br>
+    <a href="tel:2488176884" class="btn-primary">Call to Book Appointment</a>
+  </div>
+</section>
+
+<!-- AI CHAT SECTION -->
+<section class="chat-section" id="chat">
+  <div class="section-header">
+    <p class="section-eyebrow">Available 24/7</p>
+    <h2 class="section-title">Ask Our <em>AI Assistant</em></h2>
+    <p style="color:rgba(250,246,239,0.4);font-size:14px;margin-top:12px">Get instant answers about pricing, hours and booking</p>
+  </div>
+  <!-- PASTE YOUR VOICEFLOW EMBED CODE HERE -->
+  <div class="chat-container" id="voiceflow-chat">
+    <div style="padding:40px;text-align:center;color:rgba(250,246,239,0.3);font-size:13px;">
+      AI Assistant Loading...
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LINO SALON</div>
+  <p class="footer-text">3636 Rochester Rd, Troy MI 48084 • (248) 817-6884 • © 2026 Lino Salon</p>
+</footer>
+
+</body>
+</html>
+
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '69bf6141c8a996e054beb207' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
